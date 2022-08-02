@@ -29,7 +29,7 @@ function titleClickHandler(event){
   /* get 'href' attribute from the clicked link */
   const articleSelector = href;
   console.log('show', articleSelector);
-  clickedElement.getAttribute("href");
+  clickedElement.getAttribute('href');
 
   /* find the correct article using the selector (value of 'href' attribute) */
   const targetArticle = document.querySelector('.titles href');
@@ -55,6 +55,7 @@ for(let link of links){
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles';
+ 
 
 function generateTitleLinks(){
 
@@ -81,7 +82,7 @@ function generateTitleLinks(){
 
     /* find the title element */
 	const titleId = document.getElementById(optTitleSelector)
-	titleId = article.getElementById("main");
+	titleId = article.getElementById('.post .active');
 	
     /* get the title from the title element */
 	const y = x.getElementsByTagName("p");
@@ -92,8 +93,7 @@ const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</s
 	
     /* insert link into titleList */
     html = html + linkHTML;
-  }
-
+  
   titleList.innerHTML = html;
 }
 

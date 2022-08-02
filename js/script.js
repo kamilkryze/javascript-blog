@@ -29,7 +29,7 @@ function titleClickHandler(event){
   /* get 'href' attribute from the clicked link */
   const articleSelector = href;
   console.log('show', articleSelector);
-  clickedElement.getAttribute('href');
+  clickedElement.getAttribute("href");
 
   /* find the correct article using the selector (value of 'href' attribute) */
   const targetArticle = document.querySelector('.titles href');
@@ -64,22 +64,37 @@ function generateTitleLinks(){
   function clearMessages(){
 	document.getElementById(optTitleListSelector).innerHTML = '';
 }
+  /* find all the articles and save them to variable: articles */
+  const optArticleSelector = articles;
+	document.getElementyById(optArticleSelector);
+
+  let html = '';
   
   /* for each article */
+	
   for(let article of articles){
-    article.classList.remove();
+    document.getElementById(optTitleListSelector).innerHTML;
 }
 
     /* get the article id */
+	const articleId = article.getElementById(optArticleSelector);
 
     /* find the title element */
-
+	const titleId = document.getElementById(optTitleSelector)
+	titleId = article.getElementById("main");
+	
     /* get the title from the title element */
+	const y = x.getElementsByTagName("p");
 
     /* create HTML of the link */
-
+const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+	console.log('show');
+	
     /* insert link into titleList */
+    html = html + linkHTML;
+  }
 
+  titleList.innerHTML = html;
 }
 
 generateTitleLinks();

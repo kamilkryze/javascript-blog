@@ -26,16 +26,11 @@ function titleClickHandler(event){
     activeArticle.classList.remove('active');
   }
 
-  /* get 'href' attribute from the clicked link */
-  const articleSelector = href;
-  console.log('show', articleSelector);
-  clickedElement.getAttribute('href');
-
-  /* find the correct article using the selector (value of 'href' attribute) */
-  const targetArticle = document.querySelector('.titles href');
-  console.log('show', targetArticle);
-/* ERROR - script.js:30 Uncaught ReferenceError: href is not defined
-at HTMLAnchorElement.titleClickHandler (script.js:30:27) */
+ /* get 'href' attribute from the clicked link */
+ const articleSelector = clickedElement.getAttribute('href');
+  
+ /* find the correct article using the selector (value of 'href' attribute) */
+ const targetArticle = document.querySelector(articleSelector);
   
 
   /* add class 'active' to the correct article */

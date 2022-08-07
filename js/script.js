@@ -41,6 +41,7 @@ function titleClickHandler(event) {
 const optArticleSelector = ".post",
   optTitleSelector = ".post-title",
   optTitleListSelector = ".titles";
+const optArticleTagsSelector = ".post-tags .list";
 
 function generateTitleLinks() {
   /* remove contents of titleList */
@@ -75,3 +76,39 @@ function generateTitleLinks() {
 }
 
 generateTitleLinks();
+
+function generateTags() {
+  /* find all articles */
+  const articles = document.querySelectorAll(optArticleSelector);
+
+  /* START LOOP: for every article: */
+  for (let article of articles) {
+    /* find tags wrapper */
+    const tagWrapper = article.querySelector("optArticleTagsSelector");
+
+    /* make html variable with empty string */
+    let html = "";
+    /* get tags from data-tags attribute */
+    const dataTagValue = article.querySelector("data-tags");
+    /* split tags into array */
+    
+    console.log('show')
+    /* START LOOP: for each tag */
+    const tags = article.querySelectorAll('dataTagValue');
+    for(let tag of tags) {
+
+    
+    /* generate HTML of the link */
+
+    /* add generated code to html variable */
+
+    /* END LOOP: for each tag */
+  }
+
+    /* insert HTML of all the links into the tags wrapper */
+
+    /* END LOOP: for every article: */
+  }
+}
+
+generateTags();

@@ -1,5 +1,11 @@
 "use strict";
 
+const templates = {
+  articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML)
+  authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML)
+  tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML)
+}
+
 const opts = {
   tagSizes: {
     count: 5,
@@ -95,8 +101,10 @@ function generateTitleLinks(customSelector = "") {
     /* find the title element */
     const title = article.querySelector(".post-title").innerHTML;
 
-    const linkHTML =
-      '<li><a href="#' + articleId + '"><span>' + title + "</span></a></li>";
+    const linkHTMLData = {id: articleId, title: articleTitle};
+const linkHTML = templates.articleLink(linkHTMLData);
+
+      
     html = html + linkHTML;
   }
 
@@ -131,8 +139,9 @@ function generateTags() {
     /* START LOOP: for each tag */
     for (let tag of articleTagsArray) {
       /* generate HTML of the link */
-      const linkHTML =
-        '<li><a href="#tag-' + tag + '"><span>' + tag + "</span></a></li>";
+      const linkHTMLData = {id: articleTags, title: articleTags};
+      const linkHTML = templates.articleLink(linkHTMLData);
+
       /* add generated code to html variable */
       html = html + linkHTML;
 
@@ -211,7 +220,9 @@ function generateAuthors() {
     const author = article.getAttribute("data-author");
 
     /* generate HTML of the link */
-    const linkHTML = '<a href="#author-' + author + '">' + author + "</a>";
+    const linkHTMLData = {id: author, title: author};
+    const linkHTML = templates.articleLink(linkHTMLData);
+
 
     authorWrapper.innerHTML = linkHTML;
     /* END LOOP: for each tag */
@@ -302,7 +313,23 @@ function calculateTagsParams(tags) {
   // DOKOŃCZYĆ od "Znalezienie skrajnych liczb wystąpień" do końca
 }
 
-function calculateTagClass(count, params) {}
+function calculateTagClass(count, params) {
+  const params = {
+    min: 999999,
+    max: 0
+  }
+  
+  for(const tag in tags) {
+    if (tags[tag] < params.min) {
+      params.min = tags[tag];
+    }
+    if (tags[tag] > params.max) {
+      params.max = tags[tag];
+    }
+  }
+
+  return params;
+}
 
 function generateTags() {
   /* [NEW] create a new variable allTags with an empty array */
@@ -357,14 +384,18 @@ function generateTags() {
   console.log("tagsParams:", tagsParams);
 
   /* [NEW] create variable for all links HTML code */
-  let allTagsHTML = "";
+  const allTagsData = {tags: []};
 
   /* [NEW] START LOOP: for each tag in allTags: */
   for (let tag in allTags) {
     /* [NEW] generate code of a link and add it to allTagsHTML */
-    allTagsHTML += tagLinkHTML;
+    allTagsData.tags.push({
+      tag: tag,
+      count: allTags[tag],
+      className: calculateTagClass(allTags[tag], tagsParams)
+    });
     /*[NEW] END LOOP: for each tag in allTags: */
   }
   /* [NEW] add html from allTagsHTML to tagList */
-  tagList.innerHTML = allTagsHTML;
+  tagList.innerHTML = templates.tagCloudLink(allTagsData);
 }

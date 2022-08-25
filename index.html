@@ -436,6 +436,22 @@
         </main>
       </div>
     </div>
+    <script id="template-article-link" type="text/x-handlebars-template">
+      <li><a href="#{{ id }}"><span>{{ title }}</span></a></li>
+    </script>
+    <script id="template-author-link" type="text/x-handlebars-template">
+      <li><a href="#{{ id }}"><span>{{ title }}</span></a></li>
+    </script>
+    <script id="template-tag-link" type="text/x-handlebars-template">
+      <li><a href="#{{ id }}"><span>{{ title }}</span></a></li>
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
+    <script id="template-tag-cloud-link" type="text/x-handlebars-template">
+      {{#each tags}}
+      <li>{{ tag }}</li>
+      {{/each}}
+    </script>
+<!-- Na stronie, w prawej kolumnie, powinna pojawić się lista tagów. Nie są one jednak jeszcze linkami i nie mają klas odpowiedzialnych za rozmiar tagu. Aby sobie z tym poradzić, użyj właściwości count i className w swoim szablonie.-->
     <script src="js/script.js"></script>
   </body>
 </html>
